@@ -37,12 +37,12 @@ export default function SecretLab() {
             </h2>
             <div className="flex flex-col md:flex-row gap-8">
               <div className="flex-1">
-                <p className="text-gray-300 mb-4 font-mono">
+                <p className="text-gray-700 dark:text-gray-300 mb-4 font-mono">
                   &gt; INITIALIZING NEURAL NETWORK VISUALIZER...<br/>
                   &gt; LOADING PRE-TRAINED WEIGHTS...<br/>
                   &gt; READY.
                 </p>
-                <div className="h-64 bg-gray-900 rounded-xl border border-gray-700 p-4 flex items-center justify-center relative overflow-hidden group cursor-crosshair">
+                <div className="h-64 bg-gray-200 dark:bg-gray-900 rounded-xl border border-gray-400 dark:border-gray-700 p-4 flex items-center justify-center relative overflow-hidden group cursor-crosshair">
                   {/* Fake Neural Network Animation */}
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--color-neon-purple)_0%,_transparent_70%)] opacity-20"></div>
                   <motion.div 
@@ -55,12 +55,12 @@ export default function SecretLab() {
                     transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
                     className="absolute w-48 h-48 border-2 border-dotted border-[var(--color-neon-blue)] rounded-full"
                   ></motion.div>
-                  <p className="absolute text-white font-bold tracking-widest pointer-events-none">MODEL.TRAIN()</p>
+                  <p className="absolute text-gray-900 dark:text-white font-bold tracking-widest pointer-events-none">MODEL.TRAIN()</p>
                 </div>
               </div>
               <div className="flex-1 flex flex-col justify-center">
-                <h3 className="text-xl font-bold text-white mb-2">Experimental Sandbox</h3>
-                <p className="text-gray-400 mb-6 text-sm">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Experimental Sandbox</h3>
+                <p className="text-gray-600 dark:text-gray-400 mb-6 text-sm">
                   This section is dedicated to cutting-edge web ML experiments. 
                   Future updates will include TensorFlow.js integration right here in the browser.
                 </p>

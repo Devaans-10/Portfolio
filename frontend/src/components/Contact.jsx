@@ -51,10 +51,10 @@ export default function Contact() {
             value={message}
             onChange={handleMessageChange}
             placeholder="Type your message here..."
-            className="w-full bg-black/50 border border-[var(--color-neon-pink)] rounded-lg p-4 text-white focus:outline-none focus:ring-2 focus:ring-[var(--color-neon-pink)] mb-4 h-32 resize-none font-mono"
+            className="w-full bg-white/50 dark:bg-black/50 border border-[var(--color-neon-pink)] rounded-lg p-4 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[var(--color-neon-pink)] mb-4 h-32 resize-none font-mono"
           />
           
-          <div className="flex-grow bg-black/80 rounded-lg p-4 overflow-hidden mb-6 font-mono text-green-500 text-sm break-words whitespace-pre-wrap">
+          <div className="flex-grow bg-gray-100 dark:bg-black/80 rounded-lg p-4 overflow-hidden mb-6 font-mono text-green-500 text-sm break-words whitespace-pre-wrap">
             {message ? toBinary(message) : '01000010 01101001 01101110 01100001 01110010 01111001 00100000 01001111 01110101 01110100 01110000 01110101 01110100'}
           </div>
 
@@ -71,13 +71,13 @@ export default function Contact() {
           AI Assistant
         </h2>
         
-        <div className="flex-grow bg-black/50 rounded-lg p-4 overflow-y-auto mb-4 flex flex-col gap-4">
+        <div className="flex-grow bg-white/50 dark:bg-black/50 rounded-lg p-4 overflow-y-auto mb-4 flex flex-col gap-4">
           {chatLog.map((chat, index) => (
             <motion.div 
               key={index}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className={`p-3 rounded-lg max-w-[80%] ${chat.sender === 'AI' ? 'bg-[var(--color-neon-blue)]/20 text-[var(--color-neon-blue)] self-start' : 'bg-gray-800 text-white self-end'}`}
+              className={`p-3 rounded-lg max-w-[80%] ${chat.sender === 'AI' ? 'bg-[var(--color-neon-blue)]/20 text-[var(--color-neon-blue)] self-start' : 'bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-white self-end'}`}
             >
               <p className="text-sm">{chat.text}</p>
             </motion.div>
@@ -90,7 +90,7 @@ export default function Contact() {
             value={userQuery}
             onChange={(e) => setUserQuery(e.target.value)}
             placeholder="Ask a question..."
-            className="flex-grow bg-black/50 border border-[var(--color-neon-blue)] rounded-full px-4 text-white focus:outline-none"
+            className="flex-grow bg-white/50 dark:bg-black/50 border border-[var(--color-neon-blue)] rounded-full px-4 text-gray-900 dark:text-white focus:outline-none"
           />
           <button type="submit" className="px-6 py-2 bg-[var(--color-neon-blue)] text-black font-bold rounded-full hover:bg-white transition-colors">
             Ask

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ThreeCanvas from './ThreeCanvas';
+import profilePic from '../assets/profile.jpg';
 
 export default function Hero() {
   const [text, setText] = useState('');
@@ -22,6 +23,19 @@ export default function Hero() {
       <ThreeCanvas />
       
       <div className="z-10 flex flex-col items-center justify-center p-8 text-center glass-panel rounded-2xl mx-4">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+          className="mb-6 relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-[var(--color-neon-blue)] shadow-[0_0_20px_rgba(0,243,255,0.6)]"
+        >
+          <img 
+            src={profilePic} 
+            alt="Devaans Patwari" 
+            className="w-full h-full object-cover brightness-75 contrast-125" 
+          />
+        </motion.div>
+        
         <motion.h1 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -35,7 +49,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.5, duration: 1 }}
-          className="mt-6 text-lg md:text-xl text-gray-300 font-sans tracking-wide max-w-2xl leading-relaxed"
+          className="mt-6 text-lg md:text-xl text-gray-700 dark:text-gray-300 font-sans tracking-wide max-w-2xl leading-relaxed"
         >
           {tagline}
         </motion.p>

@@ -72,8 +72,8 @@ export default function Skills() {
               transition={{ delay: i * 0.1 }}
               className="glass-panel p-4 rounded-lg flex items-center justify-between"
             >
-              <span className="font-bold text-lg text-white">{skill}</span>
-              <div className="w-1/2 bg-gray-800 rounded-full h-3 overflow-hidden">
+              <span className="font-bold text-lg text-gray-900 dark:text-white">{skill}</span>
+              <div className="w-1/2 bg-gray-300 dark:bg-gray-800 rounded-full h-3 overflow-hidden">
                 <div 
                   className="bg-gradient-to-r from-[var(--color-neon-blue)] to-[var(--color-neon-pink)] h-full"
                   style={{ width: `${data.datasets[0].data[i]}%` }}

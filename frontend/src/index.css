@@ -4,14 +4,15 @@
   --color-neon-blue: #00f3ff;
   --color-neon-pink: #ff00ff;
   --color-neon-purple: #9d00ff;
-  --color-dark-bg: #0a0a0f;
+  --color-dark-bg: #000000;
   --color-dark-surface: #13131f;
 }
 
+@variant dark (&:where(.dark, .dark *));
+
 @layer base {
   body {
-    background-color: var(--color-dark-bg);
-    color: white;
+    @apply bg-gray-100 text-gray-900 dark:bg-[#000000] dark:text-white;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
   }
@@ -33,5 +34,5 @@
 }
 
 .glass-panel {
-  @apply bg-dark-surface/60 backdrop-blur-md border border-white/10 shadow-[0_0_15px_rgba(0,243,255,0.1)];
+  @apply bg-white/60 dark:bg-[#13131f]/60 backdrop-blur-md border border-black/10 dark:border-white/10 shadow-[0_0_15px_rgba(0,243,255,0.1)];
 }

@@ -14,22 +14,14 @@ export const ThemeContext = createContext();
 function App() {
   const [theme, setTheme] = useState('dark');
 
-  useEffect(() => {
-    const hour = new Date().getHours();
-    if (hour >= 6 && hour < 18) {
-      setTheme('light');
-    } else {
-      setTheme('dark');
-    }
-  }, []);
-
   const { isListening, toggleListening, transcript } = useVoiceNavigation();
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
       <Router>
-        <div className={`min-h-screen ${theme === 'dark' ? 'bg-[var(--color-dark-bg)] text-white' : 'bg-gray-100 text-gray-900'} transition-colors duration-500`}>
-          <Routes>
+        <div className={`min-h-screen ${theme === 'dark' ? 'dark' : ''} transition-colors duration-500`}>
+          <div className="min-h-screen bg-gray-100 dark:bg-[var(--color-dark-bg)] text-gray-900 dark:text-white transition-colors duration-500">
+            <Routes>
             <Route path="/" element={
               <main>
                 <Hero />
@@ -54,7 +46,8 @@ function App() {
                 )}
               </main>
             } />
-          </Routes>
+            </Routes>
+          </div>
         </div>
       </Router>
     </ThemeContext.Provider>

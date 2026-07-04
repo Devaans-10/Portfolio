@@ -36,7 +36,7 @@ export default function StickyNotes() {
             value={newNote}
             onChange={(e) => setNewNote(e.target.value)}
             placeholder="Leave a sticky note..."
-            className="px-4 py-2 rounded-lg bg-white/10 text-white backdrop-blur-md border border-white/20 focus:outline-none focus:border-[var(--color-neon-blue)]"
+            className="px-4 py-2 rounded-lg bg-black/10 dark:bg-white/10 text-gray-900 dark:text-white backdrop-blur-md border border-black/20 dark:border-white/20 focus:outline-none focus:border-[var(--color-neon-blue)]"
           />
           <button type="submit" className="px-4 py-2 bg-[var(--color-neon-blue)] text-black font-bold rounded-lg hover:bg-white transition-colors">
             +

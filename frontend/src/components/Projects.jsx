@@ -45,11 +45,11 @@ export default function Projects() {
               whileHover={{ y: -10 }}
               className="glass-panel p-6 rounded-xl flex flex-col items-center text-center relative group"
             >
-              <h3 className="text-2xl font-bold mb-2 text-white">{project.title}</h3>
+              <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">{project.title}</h3>
               <p className="text-sm text-[var(--color-neon-blue)] mb-4">{project.stack}</p>
-              <p className="text-gray-300 flex-grow">{project.summary}</p>
+              <p className="text-gray-700 dark:text-gray-300 flex-grow">{project.summary}</p>
               
-              <div className="absolute inset-0 bg-black/80 rounded-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute inset-0 bg-white/90 dark:bg-black/80 rounded-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <button className="px-6 py-2 bg-[var(--color-neon-blue)] text-black font-bold rounded-full hover:bg-white transition-colors">
                   View Code
                 </button>

@@ -33,8 +33,8 @@ const SortableItem = ({ id, content }) => {
       className="glass-panel p-6 mb-4 rounded-xl cursor-grab active:cursor-grabbing border-2 border-transparent hover:border-[var(--color-neon-blue)] transition-colors flex items-center justify-between"
     >
       <div className="flex-1">
-        <h3 className="text-xl font-bold text-white mb-2">{content.title}</h3>
-        <p className="text-gray-300">{content.desc}</p>
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{content.title}</h3>
+        <p className="text-gray-700 dark:text-gray-300">{content.desc}</p>
       </div>
       <div className="text-[var(--color-neon-blue)] text-3xl opacity-50 ml-4">
         ☰
@@ -46,8 +46,8 @@ const SortableItem = ({ id, content }) => {
 export default function Resume() {
   const [items, setItems] = useState([
     { id: '1', title: 'Experience', desc: 'AI Intern at Internship Studio. Implemented Face Recognition System using PCA & ANN.' },
-    { id: '2', title: 'Hackathons', desc: 'Top 3 at Regalia 2026 (Built ANONYMI) & Top 15 at MEGA HACKATHON 2026 (Built UnitySOS).' },
-    { id: '3', title: 'Certifications', desc: 'Google Gemini Certified, Google Cloud ADK Skill Badge, & Python Certified.' },
+    { id: '2', title: 'Hackathons', desc: 'Top 3 at Regalia 2026 (Built ANONYMI), Top 15 at MEGA HACKATHON 2026 (Built UnitySOS), & Participated in BLR AI Hack 2026.' },
+    { id: '3', title: 'Certifications', desc: 'Google Gemini Certified, Google Cloud ADK Skill Badge, Python Certified, IBM AI & Cybersecurity, and Unstop Google Gemini QuizOff.' },
     { id: '4', title: 'Community', desc: 'Member of the Google Cloud and NVIDIA community program.' },
     { id: '5', title: 'Education', desc: 'B.Tech in AI/ML - Expected 2029' },
   ]);
@@ -76,7 +76,7 @@ export default function Resume() {
         <h2 className="text-4xl font-bold font-mono text-[var(--color-neon-blue)] mb-6 text-center">
           Interactive Resume
         </h2>
-        <p className="text-center text-gray-400 mb-12">
+        <p className="text-center text-gray-600 dark:text-gray-400 mb-12">
           Drag and drop the puzzle pieces to rearrange my resume!
         </p>
         
