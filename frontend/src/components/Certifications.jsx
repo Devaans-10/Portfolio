@@ -48,7 +48,7 @@ export default function Certifications() {
   };
 
   return (
-    <section id="certifications" className="py-24 px-6 md:px-12 w-full min-h-screen bg-[var(--color-dark-surface)] relative">
+    <section id="certifications" className="py-24 px-6 md:px-12 w-full min-h-screen bg-transparent relative">
       <div className="max-w-7xl mx-auto z-10 relative">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}

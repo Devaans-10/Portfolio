@@ -4,7 +4,7 @@ import CardSwap from './CardSwap';
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 px-6 md:px-12 w-full min-h-screen bg-black overflow-hidden flex flex-col items-center">
+    <section id="projects" className="py-24 px-6 md:px-12 w-full min-h-screen bg-transparent overflow-hidden flex flex-col items-center">
       <div className="max-w-7xl mx-auto w-full">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}

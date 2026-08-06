@@ -12,7 +12,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-24 px-6 md:px-12 w-full min-h-screen flex flex-col justify-center items-center bg-[var(--color-dark-surface)] relative">
+    <section id="about" className="py-24 px-6 md:px-12 w-full min-h-screen flex flex-col justify-center items-center bg-transparent relative">
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[var(--color-neon-purple)] rounded-full blur-[120px]"></div>
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[var(--color-neon-blue)] rounded-full blur-[120px]"></div>
@@ -54,7 +54,7 @@ export default function About() {
           >
             <h3 className="text-2xl font-bold text-[var(--color-neon-blue)] mb-4">Background</h3>
             <p className="text-gray-300 leading-relaxed mb-4">
-              I’m Devaans Patwari, a 1st-year B.Tech student specializing in Artificial Intelligence and Machine Learning. 
+              I’m Devaans Patwari, a B.Tech student specializing in Artificial Intelligence and Machine Learning. 
               My journey is driven by a deep fascination with how technology can solve complex, real-world problems.
             </p>
             <p className="text-gray-300 leading-relaxed">

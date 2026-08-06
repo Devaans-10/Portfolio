@@ -26,7 +26,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 md:px-12 w-full min-h-screen bg-[var(--color-dark-surface)] flex flex-col justify-center items-center">
+    <section id="contact" className="py-24 px-6 md:px-12 w-full min-h-screen bg-transparent flex flex-col justify-center items-center">
       <div className="max-w-4xl w-full">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}

@@ -6,9 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>frontend</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ogl@0.0.71/dist/ogl.umd.js"></script>
+    <link rel="stylesheet" href="/Galaxy-BG.css">
+    <script src="/Galaxy.js"></script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        // Initialize Galaxy background
+        const galaxy = new GalaxyBackground({
+          hueShift: 240,
+          density: 1,
+          glowIntensity: 0.4,
+          saturation: 0.3,
+          mouseRepulsion: true,
+          repulsionStrength: 2,
+          twinkleIntensity: 0.3,
+          rotationSpeed: 0.05,
+          speed: 1.0,
+          transparent: true,
+          mouseInteraction: true
+        });
+      });
+    </script>
   </body>
 </html>

@@ -9,7 +9,7 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="bg-black text-white min-h-screen font-sans selection:bg-[var(--color-neon-pink)] selection:text-white">
+    <div className="bg-transparent text-white min-h-screen font-sans selection:bg-[var(--color-neon-pink)] selection:text-white">
       <Navbar />
       
       <main>
