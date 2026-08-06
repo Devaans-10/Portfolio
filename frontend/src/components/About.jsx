@@ -23,10 +23,25 @@ export default function About() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold font-mono text-white mb-12 text-center"
+          className="text-4xl md:text-5xl font-bold font-mono text-white mb-6 text-center"
         >
           &lt;About Me /&gt;
         </motion.h2>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="text-center mb-12"
+        >
+          <h3 className="text-xl md:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-neon-blue)] to-[var(--color-neon-purple)] mb-2">
+            Full Stack Developer | AI Enthusiast | Google-Certified Professional
+          </h3>
+          <p className="text-gray-400 font-mono text-sm uppercase tracking-widest">
+            Building AI Solutions | B.Tech AI/ML Student | Google-Certified
+          </p>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Bio */}
