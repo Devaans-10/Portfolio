@@ -2,102 +2,118 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 export default function Contact() {
-  const [message, setMessage] = useState('');
-  const [chatLog, setChatLog] = useState([
-    { sender: 'AI', text: 'Hello! I am Devaans’ AI assistant. Ask me anything about his work.' }
-  ]);
-  const [userQuery, setUserQuery] = useState('');
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleMessageChange = (e) => {
-    setMessage(e.target.value);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const toBinary = (str) => {
-    return str.split('').map(char => char.charCodeAt(0).toString(2).padStart(8, '0')).join(' ');
-  };
-
-  const sendBinaryMessage = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (!message) return;
-    alert(`Message sent to Devaans!\nBinary Payload: ${toBinary(message)}`);
-    setMessage('');
-  };
-
-  const sendChatMessage = (e) => {
-    e.preventDefault();
-    if (!userQuery) return;
+    setIsSubmitting(true);
     
-    const newChatLog = [...chatLog, { sender: 'User', text: userQuery }];
-    setChatLog(newChatLog);
-    setUserQuery('');
-
-    // Simulate AI response for now
+    // Simulate API Call
     setTimeout(() => {
-      setChatLog([...newChatLog, { sender: 'AI', text: 'That is interesting! Devaans is currently working on an NLP project that handles similar queries.' }]);
-    }, 1000);
+      setIsSubmitting(false);
+      setSubmitted(true);
+      setFormData({ name: '', email: '', message: '' });
+      
+      setTimeout(() => setSubmitted(false), 5000);
+    }, 1500);
   };
 
   return (
-    <section className="py-20 px-8 w-full min-h-screen flex flex-col md:flex-row gap-12 justify-center max-w-7xl mx-auto">
-      
-      {/* Binary Message Encoder */}
-      <div className="w-full md:w-1/2 glass-panel p-8 rounded-2xl flex flex-col">
-        <h2 className="text-3xl font-bold font-mono text-[var(--color-neon-pink)] mb-6">
-          Terminal Contact
-        </h2>
+    <section id="contact" className="py-24 px-6 md:px-12 w-full min-h-screen bg-[var(--color-dark-surface)] flex flex-col justify-center items-center">
+      <div className="max-w-4xl w-full">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-4xl md:text-5xl font-bold font-mono text-white mb-6 text-center"
+        >
+          Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-neon-pink)] to-[var(--color-neon-purple)]">Connect</span>
+        </motion.h2>
         
-        <form onSubmit={sendBinaryMessage} className="flex flex-col flex-grow">
-          <textarea 
-            value={message}
-            onChange={handleMessageChange}
-            placeholder="Type your message here..."
-            className="w-full bg-white/50 dark:bg-black/50 border border-[var(--color-neon-pink)] rounded-lg p-4 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[var(--color-neon-pink)] mb-4 h-32 resize-none font-mono"
-          />
+        <motion.p 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="text-center text-gray-400 mb-12 max-w-xl mx-auto"
+        >
+          Whether you have a question, a project idea, or just want to say hi, my inbox is always open. I'll try my best to get back to you!
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+          className="bg-black/50 p-8 md:p-12 rounded-3xl border border-white/10 backdrop-blur-md shadow-2xl relative overflow-hidden"
+        >
+          <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--color-neon-pink)] rounded-full blur-[100px] opacity-30"></div>
           
-          <div className="flex-grow bg-gray-100 dark:bg-black/80 rounded-lg p-4 overflow-hidden mb-6 font-mono text-green-500 text-sm break-words whitespace-pre-wrap">
-            {message ? toBinary(message) : '01000010 01101001 01101110 01100001 01110010 01111001 00100000 01001111 01110101 01110100 01110000 01110101 01110100'}
-          </div>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-6 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="flex flex-col gap-2">
+                <label htmlFor="name" className="text-sm font-semibold text-gray-300 tracking-wider uppercase">Name</label>
+                <input 
+                  type="text" 
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="bg-black/50 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[var(--color-neon-pink)] transition-colors"
+                  placeholder="John Doe"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label htmlFor="email" className="text-sm font-semibold text-gray-300 tracking-wider uppercase">Email</label>
+                <input 
+                  type="email" 
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="bg-black/50 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[var(--color-neon-pink)] transition-colors"
+                  placeholder="john@example.com"
+                />
+              </div>
+            </div>
+            
+            <div className="flex flex-col gap-2">
+              <label htmlFor="message" className="text-sm font-semibold text-gray-300 tracking-wider uppercase">Message</label>
+              <textarea 
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows="5"
+                className="bg-black/50 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[var(--color-neon-pink)] transition-colors resize-none"
+                placeholder="How can I help you?"
+              ></textarea>
+            </div>
 
-          <button type="submit" className="w-full py-3 bg-transparent border-2 border-[var(--color-neon-pink)] text-[var(--color-neon-pink)] font-bold rounded-full hover:bg-[var(--color-neon-pink)] hover:text-black transition-all">
-            ENCODE & SEND
-          </button>
-        </form>
-      </div>
-
-      {/* AI Chatbot */}
-      <div className="w-full md:w-1/2 glass-panel p-8 rounded-2xl flex flex-col h-[600px]">
-        <h2 className="text-3xl font-bold font-mono text-[var(--color-neon-blue)] mb-6 flex items-center gap-3">
-          <span className="w-3 h-3 rounded-full bg-[var(--color-neon-blue)] animate-pulse"></span>
-          AI Assistant
-        </h2>
-        
-        <div className="flex-grow bg-white/50 dark:bg-black/50 rounded-lg p-4 overflow-y-auto mb-4 flex flex-col gap-4">
-          {chatLog.map((chat, index) => (
-            <motion.div 
-              key={index}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className={`p-3 rounded-lg max-w-[80%] ${chat.sender === 'AI' ? 'bg-[var(--color-neon-blue)]/20 text-[var(--color-neon-blue)] self-start' : 'bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-white self-end'}`}
+            <button 
+              type="submit" 
+              disabled={isSubmitting}
+              className={`mt-4 py-4 rounded-lg font-bold uppercase tracking-widest transition-all duration-300 ${
+                submitted 
+                  ? 'bg-green-500 text-white' 
+                  : 'bg-transparent border-2 border-[var(--color-neon-pink)] text-[var(--color-neon-pink)] hover:bg-[var(--color-neon-pink)] hover:text-black hover:shadow-[0_0_20px_rgba(255,0,110,0.5)]'
+              }`}
             >
-              <p className="text-sm">{chat.text}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        <form onSubmit={sendChatMessage} className="flex gap-2">
-          <input 
-            type="text"
-            value={userQuery}
-            onChange={(e) => setUserQuery(e.target.value)}
-            placeholder="Ask a question..."
-            className="flex-grow bg-white/50 dark:bg-black/50 border border-[var(--color-neon-blue)] rounded-full px-4 text-gray-900 dark:text-white focus:outline-none"
-          />
-          <button type="submit" className="px-6 py-2 bg-[var(--color-neon-blue)] text-black font-bold rounded-full hover:bg-white transition-colors">
-            Ask
-          </button>
-        </form>
+              {isSubmitting ? 'Sending...' : submitted ? 'Message Sent!' : 'Send Message'}
+            </button>
+          </form>
+        </motion.div>
       </div>
-
     </section>
   );
 }

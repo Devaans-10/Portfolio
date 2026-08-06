@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-neon-blue: #00f3ff;
-  --color-neon-pink: #ff00ff;
-  --color-neon-purple: #9d00ff;
+  --color-neon-blue: #00d4ff;
+  --color-neon-pink: #ff006e;
+  --color-neon-purple: #6d28d9;
   --color-dark-bg: #000000;
   --color-dark-surface: #13131f;
 }

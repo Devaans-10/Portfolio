@@ -1,62 +1,106 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 
-const projectData = [
-  { id: 1, title: 'UnitySOS', stack: 'React, Maps API', summary: 'A comprehensive web application designed to save lives during emergencies with SOS buttons and Smart Resource Locators. Top 15 at MEGA HACKATHON 2026.' },
-  { id: 2, title: 'ANONYMI', stack: 'Next.js, Node.js, MongoDB, Socket.io', summary: 'An anonymous real-time community platform built with a focus on structured interaction and digital safety. Top 3 at Regalia 2026.' },
-  { id: 3, title: 'Advanced AI Profiling', stack: 'Google Cloud, Gemini, Vertex AI', summary: 'Built an advanced AI profiling system with natural language analysis and secure LinkedIn scraping.' },
-  { id: 4, title: 'Face Recognition System', stack: 'Python, PCA, ANN', summary: 'Implemented a Face Recognition System using Principal Component Analysis and Artificial Neural Networks.' },
-  { id: 5, title: 'Cloud-Native HTML Generator', stack: 'Node.js, React, Google Cloud', summary: 'Developed a professional HTML card generation system leveraging cloud-native architecture.' },
-];
-
 export default function Projects() {
-  const [filter, setFilter] = useState('All');
+  const projects = [
+    {
+      title: 'Nutrition AI Agent',
+      desc: 'An AI-powered application that analyzes food images to provide detailed nutritional breakdown and dietary recommendations.',
+      tech: ['Python', 'AI/ML', 'Computer Vision'],
+      link: '#',
+      color: 'var(--color-neon-blue)'
+    },
+    {
+      title: 'UnitySOS',
+      desc: 'Top 15 at MEGA HACKATHON 2026. A comprehensive web application designed to save lives during emergencies with one-click SOS & smart resource locator.',
+      tech: ['React', 'Node.js', 'Maps API'],
+      link: '#',
+      color: 'var(--color-neon-purple)'
+    },
+    {
+      title: 'ANONYMI',
+      desc: 'Top 3 at Regalia 2026. A secure platform built for privacy-first communication and data protection.',
+      tech: ['Cybersecurity', 'Web3', 'React'],
+      link: '#',
+      color: 'var(--color-neon-pink)'
+    },
+    {
+      title: 'Face Recognition System',
+      desc: 'Developed during my AI Internship using PCA & Artificial Neural Networks for high-accuracy biometric identification.',
+      tech: ['Python', 'PCA', 'ANN'],
+      link: '#',
+      color: 'var(--color-neon-blue)'
+    }
+  ];
 
-  const filteredProjects = filter === 'All' 
-    ? projectData 
-    : projectData.filter(p => p.stack.includes(filter));
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0 }
+  };
 
   return (
-    <section className="py-20 px-8 w-full min-h-screen">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold font-mono text-[var(--color-neon-pink)] mb-10 text-center drop-shadow-[0_0_8px_rgba(255,0,255,0.8)]">
-          Featured Projects
-        </h2>
+    <section id="projects" className="py-24 px-6 md:px-12 w-full min-h-screen bg-black">
+      <div className="max-w-7xl mx-auto">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-4xl md:text-5xl font-bold font-mono text-white mb-16 text-center"
+        >
+          Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-neon-blue)] to-[var(--color-neon-purple)]">Projects</span>
+        </motion.h2>
 
-        <div className="flex justify-center gap-4 mb-12 flex-wrap">
-          {['All', 'Google Cloud', 'Python', 'React', 'Node.js', 'Next.js'].map(tech => (
-            <button 
-              key={tech}
-              onClick={() => setFilter(tech)}
-              className={`px-4 py-2 rounded-full border border-[var(--color-neon-pink)] transition-all ${filter === tech ? 'bg-[var(--color-neon-pink)] text-white shadow-[0_0_10px_rgba(255,0,255,0.6)]' : 'text-[var(--color-neon-pink)] hover:bg-[var(--color-neon-pink)]/20'}`}
-            >
-              {tech}
-            </button>
-          ))}
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => (
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+        >
+          {projects.map((project, index) => (
             <motion.div 
-              key={project.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
+              key={index}
+              variants={itemVariants}
               whileHover={{ y: -10 }}
-              className="glass-panel p-6 rounded-xl flex flex-col items-center text-center relative group"
+              className="bg-[var(--color-dark-surface)] rounded-2xl p-8 border border-white/5 hover:border-white/20 transition-all duration-300 relative overflow-hidden group"
             >
-              <h3 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">{project.title}</h3>
-              <p className="text-sm text-[var(--color-neon-blue)] mb-4">{project.stack}</p>
-              <p className="text-gray-700 dark:text-gray-300 flex-grow">{project.summary}</p>
+              {/* Hover Gradient Overlay */}
+              <div 
+                className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300"
+                style={{ background: `linear-gradient(45deg, ${project.color}, transparent)` }}
+              ></div>
               
-              <div className="absolute inset-0 bg-white/90 dark:bg-black/80 rounded-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <button className="px-6 py-2 bg-[var(--color-neon-blue)] text-black font-bold rounded-full hover:bg-white transition-colors">
-                  View Code
-                </button>
+              <h3 className="text-2xl font-bold text-white mb-4 z-10 relative">{project.title}</h3>
+              <p className="text-gray-400 mb-6 z-10 relative h-20">{project.desc}</p>
+              
+              <div className="flex flex-wrap gap-2 mb-8 z-10 relative">
+                {project.tech.map((t, i) => (
+                  <span key={i} className="text-xs font-mono text-gray-300 bg-black/50 px-3 py-1 rounded-full border border-white/10">
+                    {t}
+                  </span>
+                ))}
               </div>
+              
+              <a 
+                href={project.link} 
+                className="inline-block text-sm font-bold uppercase tracking-wider z-10 relative transition-colors duration-300"
+                style={{ color: project.color }}
+              >
+                View Project &rarr;
+              </a>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
