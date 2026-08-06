@@ -31,7 +31,7 @@ export default function Footer() {
             <span className="hidden sm:inline">Email</span>
           </a>
           <a 
-            href="https://www.linkedin.com/in/devaans-patwari-63309b280/" 
+            href="https://www.linkedin.com/in/devaans-patwari-b22617383/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-gray-400 hover:text-[var(--color-neon-purple)] transition-colors flex items-center gap-2"
