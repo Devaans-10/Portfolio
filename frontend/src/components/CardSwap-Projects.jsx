@@ -43,8 +43,8 @@ const projects = [
     title: 'Job Interview Practice Platform',
     desc: 'AI-powered interview practice with real-time feedback',
     tech: ['React', 'Node.js', 'Express', 'Google Gemini API'],
-    liveUrl: '#',
-    githubUrl: '#',
+    liveUrl: 'https://job-interview-nine.vercel.app/',
+    githubUrl: 'https://github.com/Devaans-10/Job-Interview',
     color: '#10b981'
   }
 ];
