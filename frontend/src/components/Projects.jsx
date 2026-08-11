@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import CardSwap from './CardSwap';
+import CardSwapProjects from './CardSwap-Projects';
 
 export default function Projects() {
   return (
@@ -15,7 +15,7 @@ export default function Projects() {
           Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-neon-blue,#00d4ff)] to-[var(--color-neon-purple,#6d28d9)]">Projects</span>
         </motion.h2>
 
-        <CardSwap />
+        <CardSwapProjects />
       </div>
     </section>
   );
