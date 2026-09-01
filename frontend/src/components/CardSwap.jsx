@@ -3,24 +3,24 @@ import './CardSwap.css';
 
 const projects = [
   {
-    title: 'Arogya-AI-Agent',
-    desc: 'An intelligent AI health agent that provides medical advice and health recommendations using advanced AI models',
-    tech: ['Python', 'AI/ML', 'Healthcare'],
-    liveUrl: 'https://lnkd.in/gS7yZwv5',
-    githubUrl: 'https://github.com/Devaans-10/Arogya-AI-Agent.git',
-    color: '#00d4ff'
+    title: 'Job Interview Practice Platform',
+    desc: 'AI-powered interview practice platform with real-time feedback. Master your interviews with an AI interviewer that asks follow-up questions and scores your answers in real-time. Features intelligent question generation and personalized feedback powered by Google Gemini API.',
+    tech: ['React', 'Node.js', 'Express', 'Google Gemini API', 'AI'],
+    liveUrl: 'https://job-interview-nine.vercel.app',
+    githubUrl: 'https://github.com/Devaans-10/Job-Interview',
+    color: '#10b981'
   },
   {
-    title: 'My Portfolio',
-    desc: 'A stunning interactive portfolio website showcasing projects and skills with modern UI/UX design',
-    tech: ['React', 'Web Design', 'Frontend'],
+    title: 'My Animated Portfolio',
+    desc: 'Stunning interactive portfolio website featuring 3D animated sphere, galaxy WebGL background with mouse interaction, animated project cards (CardSwap), and smooth GSAP animations. Showcases 5 live projects and 9 certifications.',
+    tech: ['React', 'Three.js', 'WebGL', 'GSAP', 'Web Design'],
     liveUrl: 'https://frontend-kappa-silk-1a4hndk0vs.vercel.app/',
-    githubUrl: 'https://github.com/Devaans-10/Portfolio.git',
+    githubUrl: 'https://github.com/Devaans-10/Portfolio',
     color: '#6d28d9'
   },
   {
     title: 'Travel AI Agent Chatbot',
-    desc: 'An intelligent chatbot that helps users plan trips, find destinations, and get travel recommendations',
+    desc: 'Intelligent chatbot powered by AI that assists users in trip planning, destination discovery, and travel recommendations. Real-time chat interface with natural language processing capabilities for seamless user experience.',
     tech: ['Node.js', 'AI', 'Chatbot'],
     liveUrl: 'https://lnkd.in/gUCmcvH9',
     githubUrl: 'https://github.com/Devaans-10/AI-CHAT-BOT.git',
@@ -28,10 +28,18 @@ const projects = [
   },
   {
     title: 'LinkedIn Dev Card Generator',
-    desc: 'A tool that automatically generates professional LinkedIn developer cards with custom styling and social media integration',
-    tech: ['Full Stack', 'LinkedIn API', 'Automation'],
+    desc: 'Tool that automatically generates professional LinkedIn developer cards with custom styling. Integrated LinkedIn API for seamless social media integration and automated card creation.',
+    tech: ['Frontend', 'LinkedIn API', 'Automation'],
     liveUrl: 'https://vibe-coding-antigravity-ret0fhzdv-devaans-projects-dcacfc1b.vercel.app',
     githubUrl: 'https://github.com/Devaans-10/Linkdin-Card-.git',
+    color: '#00d4ff'
+  },
+  {
+    title: 'Arogya-AI-Agent',
+    desc: 'Intelligent AI health agent that provides medical advice and health recommendations using advanced AI models. Integrated NLP for symptom analysis and comprehensive health guidance.',
+    tech: ['Python', 'AI/ML', 'Healthcare'],
+    liveUrl: 'https://lnkd.in/gS7yZwv5',
+    githubUrl: 'https://github.com/Devaans-10/Arogya-AI-Agent.git',
     color: '#00d4ff'
   }
 ];
