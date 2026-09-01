@@ -138,7 +138,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.8 }}
               className="bg-black/70 backdrop-blur-md border border-white/10 rounded-2xl p-4 flex flex-col items-center justify-center min-w-[130px] shadow-xl hover:-translate-y-2 transition-transform duration-300 lg:-translate-x-12 lg:translate-y-4"
             >
-              <span className="text-3xl font-bold text-white">4</span>
+              <span className="text-3xl font-bold text-white">5</span>
               <span className="text-[10px] md:text-xs text-gray-400 font-medium uppercase tracking-wider text-center mt-1">Live<br/>Projects</span>
             </motion.div>
 
