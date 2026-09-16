@@ -1,99 +1,99 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { SKILLS } from '../data/personal';
 
 export default function About() {
-  const skills = [
-    { name: 'Python', color: 'bg-blue-500' },
-    { name: 'Machine Learning', color: 'bg-[var(--color-neon-purple)]' },
-    { name: 'Artificial Intelligence', color: 'bg-[var(--color-neon-pink)]' },
-    { name: 'Google Cloud Platform (GCP)', color: 'bg-blue-400' },
-    { name: 'Three.js / React', color: 'bg-[var(--color-neon-blue)]' },
-    { name: 'Data Analysis', color: 'bg-green-400' },
-  ];
-
   return (
-    <section id="about" className="py-24 px-6 md:px-12 w-full min-h-screen flex flex-col justify-center items-center bg-transparent relative">
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[var(--color-neon-purple)] rounded-full blur-[120px]"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[var(--color-neon-blue)] rounded-full blur-[120px]"></div>
-      </div>
-
-      <div className="max-w-5xl w-full z-10">
-        <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
+    <section
+      id="about"
+      className="py-28 px-6 md:px-12 w-full flex flex-col justify-center items-center relative"
+    >
+      <div className="max-w-4xl w-full z-10">
+        <motion.h2
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold font-mono text-white mb-6 text-center"
+          className="text-3xl md:text-4xl font-bold text-text mb-4"
         >
-          &lt;About Me /&gt;
+          About me
         </motion.h2>
 
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="text-center mb-12"
+          className="text-text-muted text-sm font-mono tracking-wide mb-16"
         >
-          <h3 className="text-xl md:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-neon-blue)] to-[var(--color-neon-purple)] mb-2">
-            Full Stack Developer | AI Enthusiast | Google-Certified Professional
-          </h3>
-          <p className="text-gray-400 font-mono text-sm uppercase tracking-widest">
-            Building AI Solutions | B.Tech AI/ML Student | Google-Certified
-          </p>
-        </motion.div>
+          Background, certifications, and what I work with.
+        </motion.p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 mb-16">
           {/* Bio */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="bg-black/50 p-8 rounded-2xl border border-white/10 backdrop-blur-md shadow-xl"
+            transition={{ delay: 0.1 }}
           >
-            <h3 className="text-2xl font-bold text-[var(--color-neon-blue)] mb-4">Background</h3>
-            <p className="text-gray-300 leading-relaxed mb-4">
-              I’m Devaans Patwari, a B.Tech student specializing in Artificial Intelligence and Machine Learning. 
-              My journey is driven by a deep fascination with how technology can solve complex, real-world problems.
+            <h3 className="text-lg font-semibold text-text mb-4">Background</h3>
+            <p className="text-text-muted leading-relaxed mb-4">
+              I&apos;m a B.Tech student specializing in AI and Machine Learning. I got into this field
+              because I wanted to build things that actually solve problems — not just study them in textbooks.
             </p>
-            <p className="text-gray-300 leading-relaxed">
-              From building web platforms like UnitySOS during the MEGA HACKATHON to developing Face Recognition Systems as an AI Intern, 
-              I am constantly pushing the boundaries of what I can build and learn.
+            <p className="text-text-muted leading-relaxed">
+              From hackathons (Top 3 at Regalia 2026, Top 15 at MEGA HACKATHON) to my AICTE internship
+              working with Agentic AI and IBM WatsonX, I&apos;m always looking for the next challenge to tackle.
             </p>
           </motion.div>
 
           {/* Skills */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="bg-black/50 p-8 rounded-2xl border border-white/10 backdrop-blur-md shadow-xl flex flex-col justify-center"
+            transition={{ delay: 0.2 }}
           >
-            <h3 className="text-2xl font-bold text-[var(--color-neon-pink)] mb-6">Core Competencies</h3>
-            <div className="flex flex-wrap gap-3">
-              {skills.map((skill, index) => (
-                <span 
-                  key={index} 
-                  className={`px-4 py-2 rounded-full text-sm font-semibold text-white shadow-lg ${skill.color}`}
+            <h3 className="text-lg font-semibold text-text mb-4">What I work with</h3>
+            <div className="flex flex-wrap gap-2">
+              {SKILLS.map((skill) => (
+                <span
+                  key={skill.name}
+                  className="px-3 py-1.5 rounded-md text-sm text-text-muted bg-surface border border-border"
                 >
                   {skill.name}
                 </span>
               ))}
             </div>
-            
-            <div className="mt-8 pt-8 border-t border-white/10">
-              <h4 className="text-lg font-bold text-gray-400 mb-3">Certifications</h4>
-              <ul className="list-disc list-inside text-gray-300 text-sm space-y-2">
-                <li>Google Gemini Certified</li>
-                <li>Google Cloud ADK Skill Badge</li>
-                <li>Python Certified</li>
-                <li>IBM AI & Cybersecurity</li>
-              </ul>
-            </div>
           </motion.div>
         </div>
+
+        {/* Certifications & Experience Highlights */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+        >
+          <h3 className="text-lg font-semibold text-text mb-6">Certifications &amp; Training</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="bg-surface border border-border rounded-lg p-5">
+              <p className="text-sm font-semibold text-text mb-1">Google Cloud Gen AI Academy</p>
+              <p className="text-xs text-text-muted">APAC 2026 — Generative AI, LLMs, and Cloud-based AI solutions</p>
+            </div>
+            <div className="bg-surface border border-border rounded-lg p-5">
+              <p className="text-sm font-semibold text-text mb-1">Google AI Essentials</p>
+              <p className="text-xs text-text-muted">AI fundamentals, ethics, and practical applications</p>
+            </div>
+            <div className="bg-surface border border-border rounded-lg p-5">
+              <p className="text-sm font-semibold text-text mb-1">IBM Cybersecurity Certification</p>
+              <p className="text-xs text-text-muted">Emerging tech security and best practices</p>
+            </div>
+            <div className="bg-surface border border-border rounded-lg p-5">
+              <p className="text-sm font-semibold text-text mb-1">AICTE Internship</p>
+              <p className="text-xs text-text-muted">1-month internship in Agentic AI &amp; IBM WatsonX</p>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

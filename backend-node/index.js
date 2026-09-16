@@ -1,57 +1,60 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-require('dotenv').config();
+const helmet = require('helmet');
+const morgan = require('morgan');
+
+const config = require('./src/config');
+const contactRoutes = require('./src/routes/contact');
+const errorHandler = require('./src/middleware/errorHandler');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
-app.use(cors());
-app.use(express.json());
+// Security and Logging
+app.use(helmet());
+app.use(morgan(config.NODE_ENV === 'development' ? 'dev' : 'short'));
 
-// MongoDB Schema for Contact
-const contactSchema = new mongoose.Schema({
-  message: String,
-  binary: String,
-  timestamp: { type: Date, default: Date.now }
-});
+// CORS Configuration
+const corsOptions = {
+  origin: config.NODE_ENV === 'development' ? '*' : ['http://localhost:5173']
+};
+app.use(cors(corsOptions));
 
-const ContactModel = mongoose.model('Contact', contactSchema);
+app.use(express.json({ limit: '10kb' }));
 
-// Dummy connection string (would normally use process.env.MONGO_URI)
-const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/portfolio";
-
-mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+// MongoDB Connection
+mongoose.connect(config.MONGO_URI)
   .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log('MongoDB Connection Error: ', err));
+  .catch(err => {
+    console.error('MongoDB Connection Error: ', err);
+    process.exit(1);
+  });
 
 // Routes
 app.get('/', (req, res) => {
-  res.send('AI Portfolio Backend Running');
+  res.status(200).json({ status: 'ok', message: 'Portfolio API Backend Running' });
 });
 
-app.post('/api/contact', async (req, res) => {
-  try {
-    const { message, binary } = req.body;
-    const newContact = new ContactModel({ message, binary });
-    await newContact.save();
-    res.status(200).json({ success: true, message: 'Message stored successfully' });
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
-  }
+app.use('/api/contact', contactRoutes);
+
+// Error Handler
+app.use(errorHandler);
+
+const server = app.listen(config.PORT, () => {
+  console.log(`Node Server running on port ${config.PORT}`);
 });
 
-// Proxy route to Python Backend (Simulated here if Python not running, else use Axios to fetch)
-app.post('/api/ai/chat', async (req, res) => {
-  try {
-    // normally: const response = await axios.post('http://127.0.0.1:8000/ai/chat', req.body);
-    // res.json(response.data);
-    res.json({ response: "This is proxied via Node.js" });
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to contact Python AI' });
-  }
-});
+// Graceful Shutdown
+const shutdown = () => {
+  console.log('\nGraceful shutdown initiated...');
+  server.close(() => {
+    console.log('Server closed');
+    mongoose.connection.close(false, () => {
+      console.log('MongoDB connection closed');
+      process.exit(0);
+    });
+  });
+};
 
-app.listen(PORT, () => {
-  console.log(`Node Server running on port ${PORT}`);
-});
+process.on('SIGINT', shutdown);
+process.on('SIGTERM', shutdown);

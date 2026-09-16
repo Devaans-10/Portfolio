@@ -7,11 +7,11 @@ import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
-function App() {
+export default function App() {
   return (
-    <div className="bg-transparent text-white min-h-screen font-sans selection:bg-[var(--color-neon-pink)] selection:text-white">
+    <div className="bg-bg text-text min-h-screen font-sans selection:bg-accent/20 selection:text-text">
       <Navbar />
-      
+
       <main>
         <Hero />
         <About />
@@ -19,10 +19,8 @@ function App() {
         <Certifications />
         <Contact />
       </main>
-      
+
       <Footer />
     </div>
   );
 }
-
-export default App;
