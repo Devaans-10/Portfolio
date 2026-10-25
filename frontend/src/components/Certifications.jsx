@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { CERTIFICATIONS } from '../data/certifications';
 import CopyButton from './ui/CopyButton';
 import RecentCertsStrip from './RecentCertsStrip';
+import MetroLineRoute from './MetroLineRoute';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -15,11 +16,13 @@ const itemVariants = {
 };
 
 export default function Certifications() {
+  const [activeMonthKey, setActiveMonthKey] = useState('june');
+
   return (
     <section id="certifications" className="py-28 px-6 md:px-12 w-full relative">
       <div className="max-w-6xl mx-auto z-10 relative">
         {/* Header */}
-        <div className="mb-16">
+        <div className="mb-12">
           <motion.h2
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -38,7 +41,13 @@ export default function Certifications() {
           </motion.p>
         </div>
 
-        {/* Existing Grid */}
+        {/* METRO-LINE ROUTE & ANIMATED TRAIN (above the grid) */}
+        <MetroLineRoute
+          activeMonthKey={activeMonthKey}
+          onStationChange={(month) => setActiveMonthKey(month)}
+        />
+
+        {/* Existing 3-Column Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -46,49 +55,62 @@ export default function Certifications() {
           viewport={{ once: true }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
         >
-          {CERTIFICATIONS.map((cert) => (
-            <motion.div
-              key={cert.id}
-              variants={itemVariants}
-              className="bg-surface rounded-lg p-5 border border-border hover:border-border-hover transition-colors duration-200 flex flex-col h-full group"
-            >
-              {/* Title & Status */}
-              <div className="flex justify-between items-start mb-3">
-                <h3 className="text-base font-semibold text-text max-w-[80%] leading-snug">
-                  {cert.name}
-                </h3>
-                <span className="text-[10px] font-medium text-accent uppercase tracking-wider shrink-0">
-                  {cert.status === 'Certified' ? '✓' : '—'}
-                </span>
-              </div>
+          {CERTIFICATIONS.map((cert) => {
+            const isMatch = activeMonthKey
+              ? cert.date.toLowerCase().includes(activeMonthKey)
+              : true;
 
-              {/* Issuer */}
-              <p className="text-xs font-mono text-text-muted uppercase tracking-wider mb-3">
-                {cert.issuer}
-              </p>
-
-              <p className="text-text-dim text-sm mb-4 flex-grow leading-relaxed">
-                {cert.description}
-              </p>
-
-              {/* Skills Tags */}
-              {cert.skills && (
-                <div className="flex flex-wrap gap-1.5 mb-3">
-                  {cert.skills.map((skill) => (
-                    <span key={skill} className="text-[10px] px-2 py-0.5 rounded bg-bg text-text-dim border border-border">
-                      {skill}
-                    </span>
-                  ))}
+            return (
+              <motion.div
+                key={cert.id}
+                variants={itemVariants}
+                className={`bg-surface rounded-lg p-5 border transition-all duration-300 flex flex-col h-full group ${
+                  isMatch
+                    ? 'border-[#00d4ff] shadow-[0_0_18px_rgba(0,212,255,0.35)] opacity-100 ring-1 ring-[#00d4ff]/40'
+                    : 'border-border/60 opacity-50'
+                }`}
+              >
+                {/* Title & Status */}
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="text-base font-semibold text-text max-w-[80%] leading-snug">
+                    {cert.name}
+                  </h3>
+                  <span className="text-[10px] font-medium text-accent uppercase tracking-wider shrink-0">
+                    {cert.status === 'Certified' ? '✓' : '—'}
+                  </span>
                 </div>
-              )}
 
-              {/* Footer */}
-              <div className="flex items-center justify-between text-xs text-text-dim pt-3 border-t border-border">
-                <span>{cert.date}</span>
-                {cert.credentialId && <CopyButton text={cert.credentialId} />}
-              </div>
-            </motion.div>
-          ))}
+                {/* Issuer */}
+                <p className="text-xs font-mono text-text-muted uppercase tracking-wider mb-3">
+                  {cert.issuer}
+                </p>
+
+                <p className="text-text-dim text-sm mb-4 flex-grow leading-relaxed">
+                  {cert.description}
+                </p>
+
+                {/* Skills Tags */}
+                {cert.skills && (
+                  <div className="flex flex-wrap gap-1.5 mb-3">
+                    {cert.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="text-[10px] px-2 py-0.5 rounded bg-bg text-text-dim border border-border"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {/* Footer */}
+                <div className="flex items-center justify-between text-xs text-text-dim pt-3 border-t border-border">
+                  <span>{cert.date}</span>
+                  {cert.credentialId && <CopyButton text={cert.credentialId} />}
+                </div>
+              </motion.div>
+            );
+          })}
         </motion.div>
 
         {/* Recent Hover/Tap Reveal Certificate Gallery */}
