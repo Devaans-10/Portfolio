@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { SKILLS } from '../data/personal';
+import ScratchCoinCard from './ScratchCoinCard';
 
 export default function About() {
   return (
@@ -44,24 +45,30 @@ export default function About() {
             </p>
           </motion.div>
 
-          {/* Skills */}
+          {/* Skills & Hidden Fun Fact Scratch Card */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
+            className="flex flex-col justify-between"
           >
-            <h3 className="text-lg font-semibold text-text mb-4">What I work with</h3>
-            <div className="flex flex-wrap gap-2">
-              {SKILLS.map((skill) => (
-                <span
-                  key={skill.name}
-                  className="px-3 py-1.5 rounded-md text-sm text-text-muted bg-surface border border-border"
-                >
-                  {skill.name}
-                </span>
-              ))}
+            <div>
+              <h3 className="text-lg font-semibold text-text mb-4">What I work with</h3>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {SKILLS.map((skill) => (
+                  <span
+                    key={skill.name}
+                    className="px-3 py-1.5 rounded-md text-sm text-text-muted bg-surface border border-border"
+                  >
+                    {skill.name}
+                  </span>
+                ))}
+              </div>
             </div>
+
+            {/* Scratch to reveal coin element */}
+            <ScratchCoinCard />
           </motion.div>
         </div>
 

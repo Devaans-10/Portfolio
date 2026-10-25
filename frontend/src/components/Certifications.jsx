@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { CERTIFICATIONS } from '../data/certifications';
 import CopyButton from './ui/CopyButton';
+import RecentCertsStrip from './RecentCertsStrip';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -37,7 +38,7 @@ export default function Certifications() {
           </motion.p>
         </div>
 
-        {/* Grid */}
+        {/* Existing Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -89,6 +90,9 @@ export default function Certifications() {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Recent Hover/Tap Reveal Certificate Gallery */}
+        <RecentCertsStrip />
       </div>
     </section>
   );

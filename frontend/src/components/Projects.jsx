@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { PROJECTS } from '../data/projects';
 import CardSwapProjects from './CardSwapProjects';
 
 export default function Projects() {
+  const cardSwapRef = useRef(null);
+
+  const handleStartHere = () => {
+    const elem = document.getElementById('projects');
+    if (elem) {
+      elem.scrollIntoView({ behavior: 'smooth' });
+    }
+    const addaIndex = PROJECTS.findIndex((p) =>
+      p.title.toLowerCase().includes('adda')
+    );
+    if (addaIndex !== -1 && cardSwapRef.current?.bringToFront) {
+      cardSwapRef.current.bringToFront(addaIndex);
+    }
+  };
+
   return (
     <section
       id="projects"
@@ -14,7 +29,7 @@ export default function Projects() {
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-8"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-text mb-4">
             Projects
@@ -24,7 +39,28 @@ export default function Projects() {
           </p>
         </motion.div>
 
-        <CardSwapProjects />
+        {/* Start Here Shortcut */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 mb-12 rounded-xl bg-surface border border-border"
+        >
+          <p className="text-sm text-text-muted leading-relaxed">
+            Start with <strong className="text-text font-medium">ADDA AI</strong> and <strong className="text-text font-medium">Cyber Risk Tracker</strong>, my strongest work.
+          </p>
+          <button
+            type="button"
+            onClick={handleStartHere}
+            aria-label="Scroll to projects and view ADDA AI"
+            className="px-4 py-2 rounded-lg bg-accent text-bg text-xs font-semibold hover:bg-accent-hover transition-colors whitespace-nowrap shrink-0"
+          >
+            Start with ADDA AI →
+          </button>
+        </motion.div>
+
+        <CardSwapProjects ref={cardSwapRef} />
       </div>
     </section>
   );

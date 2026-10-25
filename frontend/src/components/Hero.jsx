@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import ThreeCanvas from './ThreeCanvas';
 import profilePic from '../assets/profile.jpg';
 import { PERSONAL, STATS } from '../data/personal';
+import RecruiterTimerPopup from './RecruiterTimerPopup';
 
 export default function Hero() {
   return (
@@ -133,6 +134,9 @@ export default function Hero() {
       >
         <span className="text-[10px] text-text-dim font-mono tracking-widest uppercase">↓</span>
       </motion.div>
+
+      {/* 2-minute time-spent popup */}
+      <RecruiterTimerPopup />
     </section>
   );
 }
