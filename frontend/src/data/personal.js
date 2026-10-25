@@ -32,9 +32,9 @@ export const SOCIAL_LINKS = [
 ];
 
 export const STATS = [
-  { value: '406+', label: 'LinkedIn\nConnections' },
-  { value: '12', label: 'Certifications' },
-  { value: '7', label: 'Live\nProjects' },
+  { value: '406+', label: 'LinkedIn\nConnections', note: 'and growing!', tilt: -2.2 },
+  { value: '15', label: 'Certifications', note: 'verified skills', tilt: 1.8 },
+  { value: '7', label: 'Live\nProjects', note: 'built & shipped', tilt: -1.5 },
 ];
 
 export const SKILLS = [

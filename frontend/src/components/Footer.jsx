@@ -23,7 +23,7 @@ const ICON_PATHS = {
 
 export default function Footer() {
   return (
-    <footer className="w-full py-10 border-t border-border">
+    <footer className="w-full pt-10 pb-24 sm:pb-20 border-t border-border">
       <div className="max-w-6xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
         {/* Logo */}
         <span className="text-sm font-semibold text-text tracking-tight">

@@ -36,6 +36,36 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
+            {/* 4. ORIGIN TIMELINE (3-step block: Started as / Became / Currently) */}
+            <div className="mb-8 p-4 rounded-xl bg-surface/90 border border-border flex flex-col sm:flex-row sm:items-stretch gap-4 sm:gap-6 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:14px_14px]">
+              <div className="flex flex-col">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-accent font-semibold mb-0.5">
+                  Started as
+                </span>
+                <span className="text-lg font-bold text-text">
+                  Student
+                </span>
+              </div>
+              <div className="hidden sm:block w-px bg-border/80 my-0.5" />
+              <div className="flex flex-col">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-[#a78bfa] font-semibold mb-0.5">
+                  Became
+                </span>
+                <span className="text-lg font-bold text-text">
+                  AI/ML Builder
+                </span>
+              </div>
+              <div className="hidden sm:block w-px bg-border/80 my-0.5" />
+              <div className="flex flex-col">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-[#00d4ff] font-semibold mb-0.5">
+                  Currently
+                </span>
+                <span className="text-lg font-bold text-text">
+                  Hackathon Finalist &amp; AICTE Intern
+                </span>
+              </div>
+            </div>
+
             <h3 className="text-lg font-semibold text-text mb-4">Background</h3>
             <p className="text-text-muted leading-relaxed mb-4">
               I&apos;m an undergraduate studying AI and Machine Learning in Gujarat. I got into coding because I&apos;ve always liked figuring out how things work under the hood — and seeing an idea go from an empty editor to something people can click, test, and use never gets old.

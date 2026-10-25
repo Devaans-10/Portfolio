@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ThreeCanvas from './ThreeCanvas';
 import profilePic from '../assets/profile.jpg';
@@ -6,6 +6,29 @@ import { PERSONAL, STATS } from '../data/personal';
 import RecruiterTimerPopup from './RecruiterTimerPopup';
 
 export default function Hero() {
+  const [scrolledPast100, setScrolledPast100] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mq.matches);
+    const handler = (e) => setPrefersReducedMotion(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolledPast100(window.scrollY > 100);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Tilt degrees between -3 and 3 degrees for scrapbook sticky-notes
+  const tilts = [-2.5, 1.8, -1.6];
+
   return (
     <section
       id="hero"
@@ -62,11 +85,12 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-base md:text-lg text-text-muted max-w-lg leading-relaxed mb-12"
+            className="text-base md:text-lg text-text-muted max-w-lg leading-relaxed mb-10"
           >
             {PERSONAL.bio}
           </motion.p>
 
+          {/* Action buttons */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -86,15 +110,33 @@ export default function Hero() {
               Get in touch
             </a>
           </motion.div>
+
+          {/* 3. HERO SCROLL HINT (Below main buttons, fades after 100px scroll) */}
+          <div
+            className={`flex items-center gap-2 mt-8 text-xs font-mono tracking-widest uppercase text-accent transition-opacity duration-300 ${
+              scrolledPast100 && !prefersReducedMotion
+                ? 'opacity-0 pointer-events-none'
+                : 'opacity-90'
+            }`}
+          >
+            <span>GO ON, SCROLL DOWN</span>
+            <span
+              className={`inline-block ${
+                prefersReducedMotion ? '' : 'animate-bounce'
+              }`}
+            >
+              ↓
+            </span>
+          </div>
         </div>
 
-        {/* Profile + Stats */}
+        {/* Profile + Sticky-Note Stats */}
         <div className="lg:col-span-5 flex flex-col items-center lg:items-end mt-16 lg:mt-0 relative pb-16 lg:pb-0">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative w-56 h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden border border-border z-10"
+            className="relative w-56 h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden border border-border z-10 shadow-xl"
           >
             <img
               src={profilePic}
@@ -104,38 +146,49 @@ export default function Hero() {
             />
           </motion.div>
 
-          <div className="flex flex-wrap justify-center lg:justify-end gap-3 mt-8 lg:mt-0 lg:absolute lg:-left-12 lg:bottom-4 z-20 w-full lg:w-auto">
-            {STATS.map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.6 + i * 0.1 }}
-                className="bg-surface border border-border rounded-xl p-4 flex flex-col items-center justify-center min-w-[110px]"
-              >
-                <span className="text-2xl font-bold text-accent">
-                  {stat.value}
-                </span>
-                <span className="text-[10px] text-text-dim font-medium uppercase tracking-wider text-center mt-1 whitespace-pre-line">
-                  {stat.label}
-                </span>
-              </motion.div>
-            ))}
+          {/* 5. STICKY-NOTE STAT CARDS (Tilted -3 to 3 deg, paper background, handwritten note, hover straightens) */}
+          <div className="flex flex-wrap justify-center lg:justify-end gap-3.5 mt-8 lg:mt-0 lg:absolute lg:-left-12 lg:bottom-4 z-20 w-full lg:w-auto">
+            {STATS.map((stat, i) => {
+              const tilt = prefersReducedMotion ? 0 : (tilts[i] ?? 0);
+              return (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.6 + i * 0.1 }}
+                  style={{
+                    transform: `rotate(${tilt}deg)`,
+                  }}
+                  className={`bg-[#fdfbf7] border border-[#e2dcd2] rounded-lg p-3.5 flex flex-col items-center justify-center min-w-[115px] shadow-[0_6px_20px_rgba(0,0,0,0.35)] relative ${
+                    prefersReducedMotion
+                      ? ''
+                      : 'hover:!rotate-0 hover:scale-105 hover:shadow-[0_12px_28px_rgba(0,0,0,0.5)] transition-all duration-300 ease-out cursor-pointer'
+                  }`}
+                >
+                  {/* Scrapbook Tape Accent */}
+                  <div className="w-7 h-2 -mt-2 mb-1.5 bg-[#f3d99d]/70 rounded-xs border-b border-[#c8a966]/40" />
+
+                  <span className="text-2xl font-black text-[#151513] tracking-tight">
+                    {stat.value}
+                  </span>
+                  <span className="text-[10px] text-[#4d4a44] font-mono font-medium uppercase tracking-wider text-center mt-0.5 whitespace-pre-line leading-tight">
+                    {stat.label}
+                  </span>
+
+                  {/* Handwritten-style note under each number */}
+                  {stat.note && (
+                    <span className="text-[10px] font-mono italic text-[#008ea6] font-semibold mt-1 tracking-tight">
+                      ~ {stat.note}
+                    </span>
+                  )}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </div>
 
-      {/* Scroll hint — very subtle */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.4 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
-      >
-        <span className="text-[10px] text-text-dim font-mono tracking-widest uppercase">↓</span>
-      </motion.div>
-
-      {/* 2-minute time-spent popup */}
+      {/* Recruiter 2-minute timer popup */}
       <RecruiterTimerPopup />
     </section>
   );
