@@ -102,14 +102,6 @@ export default function Navbar() {
           Devaans Patwari
         </button>
 
-        {/* Center: Recommended Work */}
-        <div className="hidden md:flex items-center gap-1.5 text-text-muted text-[11px] font-mono truncate px-4">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#00d4ff]" />
-          <span>
-            Start with <strong className="text-text font-medium">ADDA AI</strong> and <strong className="text-text font-medium">Cyber Risk Tracker</strong>, my strongest work.
-          </span>
-        </div>
-
         {/* Right: Live Scroll Percentage */}
         <div className="flex items-center gap-1.5 font-mono text-xs text-text-muted shrink-0">
           <span className="text-[10px] uppercase text-text-dim hidden sm:inline">Scroll</span>
