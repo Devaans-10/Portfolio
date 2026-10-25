@@ -102,7 +102,66 @@ export default function About() {
           </motion.div>
         </div>
 
-        {/* Certifications & Experience Highlights */}
+        {/* Experience */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.25 }}
+          className="mb-12"
+        >
+          <h3 className="text-lg font-semibold text-text mb-6">Experience</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Entry 1 */}
+            <div className="bg-surface border border-border rounded-xl p-5 md:p-6 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-accent font-semibold px-2 py-0.5 rounded bg-accent/10 border border-accent/20">
+                    Internship
+                  </span>
+                  <span className="text-xs font-mono text-text-dim">
+                    June – July 2026
+                  </span>
+                </div>
+                <h4 className="text-base font-bold text-text mb-1">
+                  AI &amp; Cloud Computing Intern
+                </h4>
+                <p className="text-xs font-mono text-text-muted mb-3">
+                  Edunet Foundation (IBM SkillsBuild)
+                </p>
+              </div>
+              <p className="text-xs text-text-muted leading-relaxed">
+                Emerging Technologies Internship focusing on AI architectures, cloud computing workflows, and applied engineering.
+              </p>
+            </div>
+
+            {/* Entry 2 */}
+            <div className="bg-surface border border-border rounded-xl p-5 md:p-6 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-accent font-semibold px-2 py-0.5 rounded bg-accent/10 border border-accent/20">
+                    Internship · Remote
+                  </span>
+                  <span className="text-xs font-mono text-text-dim">
+                    May – July 2026
+                  </span>
+                </div>
+                <h4 className="text-base font-bold text-text mb-1">
+                  Software Engineer Intern
+                </h4>
+                <p className="text-xs font-mono text-text-muted mb-3">
+                  Yuga Yatra Retail (OPC) Private Limited
+                </p>
+              </div>
+              <ul className="text-xs text-text-muted space-y-1.5 list-disc list-inside">
+                <li>Completed an intensive internship covering Agentic AI, Cybersecurity, and Quantum Computing.</li>
+                <li>Developed and deployed production-ready solutions during the internship.</li>
+              </ul>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Certifications & Training Highlights */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
