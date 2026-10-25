@@ -68,7 +68,7 @@ export default function About() {
 
             <h3 className="text-lg font-semibold text-text mb-4">Background</h3>
             <p className="text-text-muted leading-relaxed mb-4">
-              I&apos;m an undergraduate studying AI and Machine Learning in Gujarat. I got into coding because I&apos;ve always liked figuring out how things work under the hood — and seeing an idea go from an empty editor to something people can click, test, and use never gets old.
+              I&apos;m an undergraduate studying AI and Machine Learning in Bangalore. I got into coding because I&apos;ve always liked figuring out how things work under the hood — and seeing an idea go from an empty editor to something people can click, test, and use never gets old.
             </p>
             <p className="text-text-muted leading-relaxed">
               A lot of my growth has come from jumping into the deep end: building fast at hackathons (podium finish at Regalia 2026, top 15 at MEGA HACKATHON, and shipping at ViCoDathon and Bharat Builds), diving into Agentic AI and IBM WatsonX during my AICTE internship, and hanging out with the open-source community at Hacktoberfest Bengaluru.

@@ -6,7 +6,7 @@
 export const PERSONAL = {
   name: 'Devaans Patwari',
   initials: 'DP',
-  location: 'Surat, Gujarat',
+  location: 'Bangalore, India',
   email: 'pdevaans@gmail.com',
   tagline: 'Building AI agents, full-stack tools, and things that actually work.',
   title: 'B.Tech AI/ML · AI & Full-Stack Developer',
