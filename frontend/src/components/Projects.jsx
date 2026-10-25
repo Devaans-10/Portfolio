@@ -1,21 +1,21 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { PROJECTS } from '../data/projects';
-import ExpandingProjects from './ExpandingProjects';
+import CardSwapProjects from './CardSwapProjects';
 
 export default function Projects() {
-  const expandingProjectsRef = useRef(null);
+  const cardSwapRef = useRef(null);
 
   const handleStartHere = () => {
     const elem = document.getElementById('projects');
     if (elem) {
       elem.scrollIntoView({ behavior: 'smooth' });
     }
-    const adda = PROJECTS.find((p) =>
+    const addaIndex = PROJECTS.findIndex((p) =>
       p.title.toLowerCase().includes('adda')
     );
-    if (adda && expandingProjectsRef.current?.openProject) {
-      expandingProjectsRef.current.openProject(adda.id);
+    if (addaIndex !== -1 && cardSwapRef.current?.bringToFront) {
+      cardSwapRef.current.bringToFront(addaIndex);
     }
   };
 
@@ -60,7 +60,7 @@ export default function Projects() {
           </button>
         </motion.div>
 
-        <ExpandingProjects ref={expandingProjectsRef} />
+        <CardSwapProjects ref={cardSwapRef} />
       </div>
     </section>
   );
