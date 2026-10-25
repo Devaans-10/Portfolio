@@ -5,6 +5,38 @@
 
 export const CERTIFICATIONS = [
   {
+    id: 'hacktoberfest-bengaluru',
+    name: 'Hacktoberfest Hack Day Bengaluru',
+    issuer: 'Hacktoberfest (MLH, DEV, DigitalOcean)',
+    date: 'October 2026',
+    type: 'Certificate of Attendance',
+    skills: ['Hacktoberfest', 'Open Source', 'Community'],
+    description: 'Attended Hacktoberfest Hack Day Bengaluru x KrowdKraft in person.',
+    status: 'Completed',
+  },
+  {
+    id: 'first-commit-bharat-builds',
+    name: 'First Commit',
+    issuer: 'WeMakeDevs x AWS',
+    date: 'September 2026',
+    type: 'Certificate of Participation',
+    credentialId: 'Y5CSPWGBHR',
+    skills: ['Hackathon', 'AWS', 'WeMakeDevs'],
+    description: 'Bharat Builds Tour, Hackathon Series 2026 (event 01).',
+    status: 'Completed',
+  },
+  {
+    id: 'vicodathon-2026',
+    name: 'ViCoDathon 2026',
+    issuer: 'AB Talks',
+    date: 'August 2026',
+    type: 'Certificate of Participation',
+    credentialId: 'ABT-HK-U46M3',
+    skills: ['AI', 'Hackathon', 'Vibe Coding'],
+    description: "India's AI Vibe Coding Hackathon.",
+    status: 'Completed',
+  },
+  {
     id: 'ibm-agentic-ai',
     name: 'Make Agentic AI Work for You',
     issuer: 'IBM',
