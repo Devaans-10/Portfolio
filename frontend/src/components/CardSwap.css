@@ -10,7 +10,7 @@
   height: 380px;
   margin: 0 auto;
   perspective: 1000px;
-  margin-bottom: 240px;
+  margin-bottom: 520px;
 }
 
 .swap-card {
@@ -47,6 +47,6 @@
   .card-swap-wrapper {
     height: 420px;
     max-width: 100%;
-    margin-bottom: 100px;
+    margin-bottom: 360px;
   }
 }

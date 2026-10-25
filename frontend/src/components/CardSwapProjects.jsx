@@ -1,22 +1,14 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { PROJECTS } from '../data/projects';
 import './CardSwap.css';
 
 /**
  * Animated card stack that cycles through projects via GSAP.
- * Auto-rotates every 5s, pauses on hover.
+ * Auto-rotates every 5s with elastic easing — continuous, no pause on hover.
  */
 export default function CardSwapProjects() {
   const containerRef = useRef(null);
   const intervalRef = useRef(null);
-
-  const startAutoPlay = useCallback((swapFn) => {
-    intervalRef.current = setInterval(swapFn, 5000);
-  }, []);
-
-  const stopAutoPlay = useCallback(() => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
-  }, []);
 
   useEffect(() => {
     const gsap = window.gsap;
@@ -27,15 +19,16 @@ export default function CardSwapProjects() {
 
     let currentIndex = 0;
     const totalCards = cards.length;
-    const STAGGER_X = 50;
-    const STAGGER_Y = 60;
+    const STAGGER_X = 60;
+    const STAGGER_Y = 70;
 
+    // Initial stack layout
     cards.forEach((card, i) => {
       gsap.set(card, {
         x: i * STAGGER_X,
         y: i * STAGGER_Y,
         zIndex: totalCards - i,
-        opacity: 1 - i * 0.18,
+        opacity: 1 - i * 0.12,
       });
     });
 
@@ -45,15 +38,17 @@ export default function CardSwapProjects() {
 
       const tl = gsap.timeline();
 
+      // Animate top card out
       tl.to(topCard, {
-        y: 180,
-        x: -40,
+        y: 200,
+        x: -50,
         opacity: 0,
-        duration: 0.7,
-        ease: 'power2.inOut',
+        duration: 0.8,
+        ease: 'elastic.out(1, 0.6)',
         onComplete: () => gsap.set(topCard, { zIndex: 0 }),
       });
 
+      // Shift remaining cards up
       cards.forEach((card, i) => {
         if (i !== currentIndex) {
           const offset = (i - nextIndex + totalCards) % totalCards;
@@ -61,42 +56,36 @@ export default function CardSwapProjects() {
             x: offset * STAGGER_X,
             y: offset * STAGGER_Y,
             zIndex: totalCards - offset,
-            opacity: 1 - offset * 0.18,
-            duration: 1,
-            ease: 'power3.out',
+            opacity: 1 - offset * 0.12,
+            duration: 1.2,
+            ease: 'elastic.out(1, 0.75)',
           });
         }
       });
 
+      // Send top card to back of stack
       tl.to(
         topCard,
         {
           x: (totalCards - 1) * STAGGER_X,
           y: (totalCards - 1) * STAGGER_Y,
-          opacity: 1 - (totalCards - 1) * 0.18,
-          duration: 0.7,
-          ease: 'power2.out',
+          opacity: 1 - (totalCards - 1) * 0.12,
+          duration: 0.8,
+          ease: 'elastic.out(1, 0.6)',
         },
-        '-=0.3'
+        '-=0.4'
       );
 
       currentIndex = nextIndex;
     };
 
-    startAutoPlay(swapCard);
-
-    const container = containerRef.current;
-    const handleEnter = () => stopAutoPlay();
-    const handleLeave = () => startAutoPlay(swapCard);
-    container.addEventListener('mouseenter', handleEnter);
-    container.addEventListener('mouseleave', handleLeave);
+    // Continuous animation — no pause on hover
+    intervalRef.current = setInterval(swapCard, 5000);
 
     return () => {
-      stopAutoPlay();
-      container.removeEventListener('mouseenter', handleEnter);
-      container.removeEventListener('mouseleave', handleLeave);
+      if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [startAutoPlay, stopAutoPlay]);
+  }, []);
 
   return (
     <div className="card-swap-wrapper" ref={containerRef}>
