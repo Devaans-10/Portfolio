@@ -32,9 +32,9 @@ export const SOCIAL_LINKS = [
 ];
 
 export const STATS = [
-  { value: '307+', label: 'LinkedIn\nConnections' },
-  { value: '9', label: 'Certifications' },
-  { value: '5', label: 'Live\nProjects' },
+  { value: '406+', label: 'LinkedIn\nConnections' },
+  { value: '12', label: 'Certifications' },
+  { value: '7', label: 'Live\nProjects' },
 ];
 
 export const SKILLS = [
