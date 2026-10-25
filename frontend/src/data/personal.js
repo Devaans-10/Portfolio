@@ -8,9 +8,9 @@ export const PERSONAL = {
   initials: 'DP',
   location: 'Surat, Gujarat',
   email: 'pdevaans@gmail.com',
-  tagline: 'Building AI-powered solutions that solve real-world problems.',
-  title: 'B.Tech AI/ML · Google Cloud Certified · IBM Certified',
-  bio: "Hi! I'm Devaans — I specialize in building AI-powered solutions that solve real-world problems. With certifications in Google Cloud Gen AI Academy, Google AI Essentials, and IBM Cybersecurity, I combine theoretical knowledge with hands-on expertise. I thrive on collaboration, learning, and pushing boundaries in AI/ML.",
+  tagline: 'Building AI agents, full-stack tools, and things that actually work.',
+  title: 'B.Tech AI/ML · AI & Full-Stack Developer',
+  bio: "Hey, I'm Devaans — a developer focused on AI and Machine Learning. I like building things that actually get used: from voice-driven security tools and autonomous agents to practical web apps. When I'm not hacking on projects or competing in hackathons, I'm usually diving into new models and frameworks.",
 };
 
 export const SOCIAL_LINKS = [
