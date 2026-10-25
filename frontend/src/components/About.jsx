@@ -41,8 +41,7 @@ export default function About() {
               because I wanted to build things that actually solve problems — not just study them in textbooks.
             </p>
             <p className="text-text-muted leading-relaxed">
-              From hackathons (Top 3 at Regalia 2026, Top 15 at MEGA HACKATHON) to my AICTE internship
-              working with Agentic AI and IBM WatsonX, I&apos;m always looking for the next challenge to tackle.
+              From hackathons (Top 3 at Regalia 2026, Top 15 at MEGA HACKATHON, and shipping projects at First Commit by WeMakeDevs x AWS and ViCoDathon 2026) to my AICTE internship working with Agentic AI and IBM WatsonX, and attending Hacktoberfest Hack Day Bengaluru, I&apos;m always looking for the next challenge to tackle.
             </p>
           </motion.div>
 
